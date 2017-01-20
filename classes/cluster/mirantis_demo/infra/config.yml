@@ -22,19 +22,16 @@ parameters:
       node:
         kubernetes_control_node01:
           params:
-            deploy_address: ${_param:kubernetes_control_node01_deploy_address}
             data_address: ${_param:kubernetes_control_node01_data_address}
             deploy_nic:
             primary_second_nic:
         kubernetes_control_node02:
           params:
-            deploy_address: ${_param:kubernetes_control_node02_deploy_address}
             data_address: ${_param:kubernetes_control_node02_data_address}
             deploy_nic:
             primary_second_nic:
         kubernetes_control_node03:
           params:
-            deploy_address: ${_param:kubernetes_control_node03_deploy_address}
             data_address: ${_param:kubernetes_control_node03_data_address}
             deploy_nic:
             primary_second_nic:
@@ -46,7 +43,6 @@ parameters:
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: xenial
-            deploy_address: ${_param:kubernetes_compute_node01_deploy_address}
             single_address: ${_param:kubernetes_compute_node01_single_address}
             data_address: ${_param:kubernetes_compute_node01_data_address}
             deploy_nic:
@@ -59,7 +55,6 @@ parameters:
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: xenial
-            deploy_address: ${_param:kubernetes_compute_node02_deploy_address}
             single_address: ${_param:kubernetes_compute_node02_single_address}
             data_address: ${_param:kubernetes_compute_node02_data_address}
             deploy_nic:
@@ -72,7 +67,6 @@ parameters:
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: xenial
-            deploy_address: ${_param:kubernetes_compute_node03_deploy_address}
             single_address: ${_param:kubernetes_compute_node03_single_address}
             data_address: ${_param:kubernetes_compute_node03_data_address}
             deploy_nic:
@@ -85,7 +79,6 @@ parameters:
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: xenial
-            deploy_address: ${_param:kubernetes_compute_node04_deploy_address}
             single_address: ${_param:kubernetes_compute_node04_single_address}
             data_address: ${_param:kubernetes_compute_node04_data_address}
             deploy_nic:
@@ -98,7 +91,6 @@ parameters:
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: xenial
-            deploy_address: ${_param:kubernetes_compute_node05_deploy_address}
             single_address: ${_param:kubernetes_compute_node05_single_address}
             data_address: ${_param:kubernetes_compute_node05_data_address}
             deploy_nic:

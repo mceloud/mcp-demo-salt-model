@@ -5,6 +5,7 @@ classes:
 - system.salt.minion.cert.k8s_server_certificate
 - system.kubernetes.master.cluster
 - cluster.mirantis_demo.kubernetes.compute
+- cluster.mirantis_demo.kubernetes
 - cluster.mirantis_demo
 parameters:
   _param:

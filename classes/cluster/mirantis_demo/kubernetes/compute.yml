@@ -3,6 +3,7 @@ classes:
 - system.kubernetes.pool.cluster
 - system.salt.minion.cert.k8s_client_certificate
 #- system.bird.server.single
+- cluster.mirantis_demo.kubernetes
 - cluster.mirantis_demo
 parameters:
   kubernetes:
