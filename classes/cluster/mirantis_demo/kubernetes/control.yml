@@ -9,7 +9,7 @@ classes:
 - cluster.mirantis_demo
 parameters:
   _param:
-    keepalived_vip_interface: bond.2408
+    keepalived_vip_interface: bond0.2408
     keepalived_vip_virtual_router_id: 60
   etcd:
     server:
