@@ -26,9 +26,9 @@ parameters:
     kubernetes_compute_node03_hostname: cmp03
     kubernetes_compute_node04_hostname: cmp04
     kubernetes_compute_node05_hostname: cmp05
-    kubernetes_control_node01_hostname: ctl01
-    kubernetes_control_node02_hostname: ctl02
-    kubernetes_control_node03_hostname: ctl03
+    kubernetes_control_node01_hostname: kvm01
+    kubernetes_control_node02_hostname: kvm02
+    kubernetes_control_node03_hostname: kvm03
     kubernetes_control_hostname: ctl
 
     # kubernetes data plane addresses
