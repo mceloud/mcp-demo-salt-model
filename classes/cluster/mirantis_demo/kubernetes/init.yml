@@ -1,0 +1,141 @@
+
+parameters:
+  _param:
+    kubernetes_admin_user: admin
+    kubernetes_admin_password: XXXXXXXXXXXXXXXX
+    kubernetes_admin_token: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    kubernetes_kubelet_token: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    kubernetes_kube-proxy_token: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    kubernetes_scheduler_token: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    kubernetes_controller-manager_token: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    kubernetes_dns_token: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    etcd_initial_token: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    kubernetes_internal_api_address: 10.254.0.1
+    cluster_vip_address: ${_param:kubernetes_control_address}
+    cluster_local_address: ${_param:single_address}
+    cluster_node01_hostname: ${_param:kubernetes_control_node01_hostname}
+    cluster_node01_address: ${_param:kubernetes_control_node01_address}
+    cluster_node01_port: 4001
+    cluster_node02_hostname: ${_param:kubernetes_control_node02_hostname}
+    cluster_node02_address: ${_param:kubernetes_control_node02_address}
+    cluster_node02_port: 4001
+    cluster_node03_hostname: ${_param:kubernetes_control_node03_hostname}
+    cluster_node03_address: ${_param:kubernetes_control_node03_address}
+    cluster_node03_port: 4001
+    calico_private_network: 192.168.0.0
+    calico_private_netmask: 16
+  linux:
+    network:
+      host:
+        ctl:
+          address: ${_param:kubernetes_control_address}
+          names:
+          - ${_param:kubernetes_control_hostname}
+          - ${_param:kubernetes_control_hostname}.${_param:cluster_domain}
+        ctl01:
+          address: ${_param:kubernetes_control_node01_address}
+          names:
+          - ${_param:kubernetes_control_node01_hostname}
+          - ${_param:kubernetes_control_node01_hostname}.${_param:cluster_domain}
+        ctl02:
+          address: ${_param:kubernetes_control_node02_address}
+          names:
+          - ${_param:kubernetes_control_node02_hostname}
+          - ${_param:kubernetes_control_node02_hostname}.${_param:cluster_domain}
+        ctl03:
+          address: ${_param:kubernetes_control_node03_address}
+          names:
+          - ${_param:kubernetes_control_node03_hostname}
+          - ${_param:kubernetes_control_node03_hostname}.${_param:cluster_domain}
+        cmp01:
+          address: ${_param:kubernetes_compute_node01_single_address}
+          names:
+          - ${_param:kubernetes_compute_node01_hostname}
+          - ${_param:kubernetes_compute_node01_hostname}.${_param:cluster_domain}
+        cmp02:
+          address: ${_param:kubernetes_compute_node02_single_address}
+          names:
+          - ${_param:kubernetes_compute_node02_hostname}
+          - ${_param:kubernetes_compute_node02_hostname}.${_param:cluster_domain}
+        cmp03:
+          address: ${_param:kubernetes_compute_node03_single_address}
+          names:
+          - ${_param:kubernetes_compute_node03_hostname}
+          - ${_param:kubernetes_compute_node03_hostname}.${_param:cluster_domain}
+        cmp04:
+          address: ${_param:kubernetes_compute_node04_single_address}
+          names:
+          - ${_param:kubernetes_compute_node04_hostname}
+          - ${_param:kubernetes_compute_node04_hostname}.${_param:cluster_domain}
+        cmp05:
+          address: ${_param:kubernetes_compute_node05_single_address}
+          names:
+          - ${_param:kubernetes_compute_node05_hostname}
+          - ${_param:kubernetes_compute_node05_hostname}.${_param:cluster_domain}
+      resolv:
+        dns:
+          - 10.254.0.10
+          - 172.18.176.4
+          - 172.18.176.5
+        domain: mcp-fuel-aio.local
+        search:
+          - bud.mirantis.net
+          - scc.mirantis.net
+          - vm.mirantis.net
+          - ssl.mirantis.net
+          - msk.mirantis.net
+          - srt.mirantis.net
+        options:
+          - ndots:5
+          - timeout:2
+          - attempts:2
+      interface:
+        deploy_nic:
+          name: ${_param:deploy_nic}
+          enabled: true
+          mtu: 1500
+          proto: dhcp
+          type: eth
+        primary_second_nic:
+          name: ${_param:primary_second_nic}
+          enabled: true
+          type: slave
+          mtu: 9000
+          master: bond0
+        bond0:
+          enabled: true
+          proto: manual
+          type: bond
+          use_interfaces:
+          - ${_param:primary_second_nic}
+          slaves: ${_param:primary_second_nic}
+          mode: active-backup
+          mtu: 9000
+        bond0.2408:
+          address: ${_param:single_address}
+          netmask: 255.255.255.0
+          enabled: true
+          proto: static
+          mtu: 9000
+          type: eth
+        bond0.2409:
+          address: ${_param:data_address}
+          netmask: 255.255.255.0
+          enabled: true
+          proto: static
+          mtu: 9000
+          type: eth
+    system:
+      rc:
+        local: |
+          #!/bin/sh -e
+          #
+          # rc.local
+          #
+          ######### This file is managed by Salt! ##########
+          # This script is executed at the end of each multiuser runlevel.
+          # Make sure that the script will "exit 0" on success or any other
+          # value on error.
+          #
+          ip r a 10.254.0.0/16 dev bond0.2408
+          exit 0
