@@ -17,6 +17,9 @@ parameters:
     deploy_address: ${_param:infra_config_deploy_address}
     salt_master_host: ${_param:infra_config_address}
     linux_system_codename: xenial
+    kubernetes_control_node01_hostname: kvm01
+    kubernetes_control_node02_hostname: kvm02
+    kubernetes_control_node03_hostname: kvm03
   reclass:
     storage:
       node:
