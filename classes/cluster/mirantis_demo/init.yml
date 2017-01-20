@@ -4,7 +4,7 @@ classes:
 - system.linux.system.single
 - system.openssh.server.team.tcpcloud
 - cluster.mirantis_demo.infra
-- cluster.mirantis_demo.kubernetes
+#- cluster.mirantis_demo.kubernetes
 parameters: 
   _param:
     cluster_domain: mirantis_demo.local
