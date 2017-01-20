@@ -1,5 +1,6 @@
 classes:
 - system.linux.system.repo.docker
+- system.linux.system.repo.tcp_base
 - system.kubernetes.pool.cluster
 - system.salt.minion.cert.k8s_client_certificate
 #- system.bird.server.single

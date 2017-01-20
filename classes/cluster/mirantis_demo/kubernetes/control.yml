@@ -2,6 +2,7 @@ classes:
 - service.etcd.server.cluster
 - system.haproxy.proxy.listen.kubernetes.etcd
 - system.linux.system.repo.docker
+- system.linux.system.repo.tcp_base
 - system.salt.minion.cert.k8s_server_certificate
 - system.kubernetes.master.cluster
 - cluster.mirantis_demo.kubernetes.compute
