@@ -26,18 +26,18 @@ parameters:
         kubernetes_control_node01:
           params:
             data_address: ${_param:kubernetes_control_node01_data_address}
-            deploy_nic:
-            primary_second_nic:
+            deploy_nic: enp3s0f0
+            primary_second_nic: enp3s0f1
         kubernetes_control_node02:
           params:
             data_address: ${_param:kubernetes_control_node02_data_address}
-            deploy_nic:
-            primary_second_nic:
+            deploy_nic: eth0
+            primary_second_nic: eth1
         kubernetes_control_node03:
           params:
             data_address: ${_param:kubernetes_control_node03_data_address}
-            deploy_nic:
-            primary_second_nic:
+            deploy_nic: eth0
+            primary_second_nic: eth1
         kubernetes_compute_node01:
           name: ${_param:kubernetes_compute_node01_hostname}
           domain: ${_param:cluster_domain}
@@ -48,8 +48,8 @@ parameters:
             linux_system_codename: xenial
             single_address: ${_param:kubernetes_compute_node01_single_address}
             data_address: ${_param:kubernetes_compute_node01_data_address}
-            deploy_nic:
-            primary_second_nic:
+            deploy_nic: eth0
+            primary_second_nic: eth1
         kubernetes_compute_node02:
           name: ${_param:kubernetes_compute_node02_hostname}
           domain: ${_param:cluster_domain}
@@ -60,8 +60,8 @@ parameters:
             linux_system_codename: xenial
             single_address: ${_param:kubernetes_compute_node02_single_address}
             data_address: ${_param:kubernetes_compute_node02_data_address}
-            deploy_nic:
-            primary_second_nic:
+            deploy_nic: eth0
+            primary_second_nic: eth1
         kubernetes_compute_node03:
           name: ${_param:kubernetes_compute_node03_hostname}
           domain: ${_param:cluster_domain}
@@ -72,8 +72,8 @@ parameters:
             linux_system_codename: xenial
             single_address: ${_param:kubernetes_compute_node03_single_address}
             data_address: ${_param:kubernetes_compute_node03_data_address}
-            deploy_nic:
-            primary_second_nic:
+            deploy_nic: eth0
+            primary_second_nic: eth1
         kubernetes_compute_node04:
           name: ${_param:kubernetes_compute_node04_hostname}
           domain: ${_param:cluster_domain}
@@ -84,8 +84,8 @@ parameters:
             linux_system_codename: xenial
             single_address: ${_param:kubernetes_compute_node04_single_address}
             data_address: ${_param:kubernetes_compute_node04_data_address}
-            deploy_nic:
-            primary_second_nic:
+            deploy_nic: eth0
+            primary_second_nic: eth1
         kubernetes_compute_node05:
           name: ${_param:kubernetes_compute_node05_hostname}
           domain: ${_param:cluster_domain}
@@ -96,5 +96,5 @@ parameters:
             linux_system_codename: xenial
             single_address: ${_param:kubernetes_compute_node05_single_address}
             data_address: ${_param:kubernetes_compute_node05_data_address}
-            deploy_nic:
-            primary_second_nic:
+            deploy_nic: eth0
+            primary_second_nic: eth1
