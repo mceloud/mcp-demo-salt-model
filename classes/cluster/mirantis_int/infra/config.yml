@@ -1,0 +1,61 @@
+classes:
+- system.linux.system.repo.tcp_salt
+- system.openssh.client.lab
+- system.salt.master.pkg
+- system.salt.master.api
+- system.salt.minion.ca.salt_master
+- system.reclass.storage.salt
+- system.reclass.storage.system.kubernetes_control_cluster
+- cluster.mirantis_int
+parameters:
+  _param:
+    salt_master_base_environment: prd
+    reclass_data_repository: "https://github.com/mceloud/mcp-demo-salt-model.git"
+    reclass_data_revision: master
+    reclass_config_master: ${_param:infra_config_deploy_address}
+    single_address: ${_param:infra_config_address}
+    deploy_address: ${_param:infra_config_deploy_address}
+    salt_master_host: ${_param:infra_config_address}
+    linux_system_codename: xenial
+  reclass:
+    storage:
+      node:
+        kubernetes_control_node01:
+          params:
+            data_address: ${_param:kubernetes_control_node01_data_address}
+            deploy_nic: eth0
+            primary_second_nic: eth1
+        kubernetes_control_node02:
+          params:
+            data_address: ${_param:kubernetes_control_node02_data_address}
+            deploy_nic: eth0
+            primary_second_nic: eth1
+        kubernetes_control_node03:
+          params:
+            data_address: ${_param:kubernetes_control_node03_data_address}
+            deploy_nic: eth0
+            primary_second_nic: eth1
+        kubernetes_compute_node01:
+          name: ${_param:kubernetes_compute_node01_hostname}
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.kubernetes.compute
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: xenial
+            single_address: ${_param:kubernetes_compute_node01_single_address}
+            data_address: ${_param:kubernetes_compute_node01_data_address}
+            deploy_nic: eth0
+            primary_second_nic: eth1
+        kubernetes_compute_node02:
+          name: ${_param:kubernetes_compute_node02_hostname}
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.kubernetes.compute
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: xenial
+            single_address: ${_param:kubernetes_compute_node02_single_address}
+            data_address: ${_param:kubernetes_compute_node02_data_address}
+            deploy_nic: eth0
+            primary_second_nic: eth1

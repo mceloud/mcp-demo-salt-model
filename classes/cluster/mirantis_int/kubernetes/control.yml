@@ -1,0 +1,20 @@
+classes:
+- service.etcd.server.cluster
+- system.haproxy.proxy.listen.kubernetes.etcd
+- system.linux.system.repo.docker
+- system.linux.system.repo.tcp_base
+- system.salt.minion.cert.k8s_server_certificate
+- system.kubernetes.master.cluster
+- cluster.mirantis_int.kubernetes.compute
+- cluster.mirantis_int.kubernetes
+- cluster.mirantis_int
+parameters:
+  _param:
+    keepalived_vip_interface: bond0.2402
+    keepalived_vip_virtual_router_id: 60
+  etcd:
+    server:
+      setup:
+        calico:
+          key: /calico/v1/ipam/v4/pool/${_param:calico_private_network}-${_param:calico_private_netmask}
+          value: '{"masquerade": true, "cidr": "${_param:calico_private_network}/${_param:calico_private_netmask}"}'
