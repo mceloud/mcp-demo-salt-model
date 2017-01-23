@@ -100,7 +100,7 @@ parameters:
           name: ${_param:primary_second_nic}
           enabled: true
           type: slave
-          mtu: 9000
+          mtu: 1500
           master: bond0
         bond0:
           enabled: true
@@ -110,20 +110,20 @@ parameters:
           - ${_param:primary_second_nic}
           slaves: ${_param:primary_second_nic}
           mode: active-backup
-          mtu: 9000
+          mtu: 1500
         bond0.2408:
           address: ${_param:single_address}
           netmask: 255.255.255.0
           enabled: true
           proto: static
-          mtu: 9000
+          mtu: 1500
           type: eth
         bond0.2409:
           address: ${_param:data_address}
           netmask: 255.255.255.0
           enabled: true
           proto: static
-          mtu: 9000
+          mtu: 1500
           type: eth
     system:
       rc:
