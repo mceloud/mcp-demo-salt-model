@@ -96,14 +96,14 @@ parameters:
           slaves: ${_param:primary_second_nic}
           mode: active-backup
           mtu: 1500
-        bond0.2408:
+        bond0.2402:
           address: ${_param:single_address}
           netmask: 255.255.255.0
           enabled: true
           proto: static
           mtu: 1500
           type: eth
-        bond0.2409:
+        bond0.2403:
           address: ${_param:data_address}
           netmask: 255.255.255.0
           enabled: true
