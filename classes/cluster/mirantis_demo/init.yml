@@ -3,6 +3,7 @@
 classes:
 - system.linux.system.single
 - system.openssh.server.team.tcpcloud
+- system.openssh.server.team.mcp_ci
 - cluster.mirantis_demo.infra
 #- cluster.mirantis_demo.kubernetes
 parameters: 
