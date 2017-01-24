@@ -5,6 +5,8 @@ classes:
 - system.linux.system.repo.tcp_base
 - system.salt.minion.cert.k8s_server_certificate
 - system.kubernetes.master.cluster
+- system.glusterfs.server.cluster
+- system.glusterfs.client.cluster
 - cluster.mirantis_demo.kubernetes.compute
 - cluster.mirantis_demo.kubernetes
 - cluster.mirantis_demo
@@ -23,3 +25,25 @@ parameters:
       addons:
         dns:
           replicas: 3
+  glusterfs:
+    server:
+      volumes:
+        mcp_data:
+          storage: /srv/glusterfs/mcp_data
+          replica: 3
+          bricks:
+            - ${_param:cluster_node01_address}:/srv/glusterfs/mcp_data
+            - ${_param:cluster_node02_address}:/srv/glusterfs/mcp_data
+            - ${_param:cluster_node03_address}:/srv/glusterfs/mcp_data
+          options:
+            cluster.readdir-optimize: On
+            nfs.disable: On
+            network.remote-dio: On
+            diagnostics.client-log-level: WARNING
+            diagnostics.brick-log-level: WARNING
+    client:
+      volumes:
+        mcp_data:
+          path: /srv/volumes/mcp_data
+          server: ${_param:cluster_node01_address}
+          opts: 'defaults'
