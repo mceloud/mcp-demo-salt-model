@@ -5,8 +5,9 @@ classes:
 - system.salt.master.api
 - system.salt.minion.ca.salt_master
 - system.reclass.storage.salt
-- system.reclass.storage.system.kubernetes_control_cluster
-- cluster.mirantis_demo
+#- system.reclass.storage.system.kubernetes_control_cluster
+- cluster.mirantis_demo.init_ccp
+- cluster.mirantis_demo.init_cicd
 parameters:
   _param:
     salt_master_base_environment: prd
@@ -20,18 +21,81 @@ parameters:
   reclass:
     storage:
       node:
-        kubernetes_control_node01:
+        kubernetes_cicd_control_node01:
+          name: ${_param:kubernetes_cicd_control_node01_hostname}
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.kubernetes.control_cicd
           params:
-            data_address: ${_param:kubernetes_control_node01_data_address}
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: xenial
+            single_address: ${_param:kubernetes_cicd_control_node01_address}
+            keepalived_vip_priority: 103
+            data_address: ${_param:kubernetes_cicd_control_node01_data_address}
             deploy_nic: enp3s0f0
             primary_second_nic: enp3s0f1
-        kubernetes_control_node02:
+        kubernetes_cicd_control_node02:
+          name: ${_param:kubernetes_cicd_control_node02_hostname}
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.kubernetes.control_cicd
           params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: xenial
+            single_address: ${_param:kubernetes_cicd_control_node02_address}
+            keepalived_vip_priority: 102
+            data_address: ${_param:kubernetes_cicd_control_node02_data_address}
+            deploy_nic: eth0
+            primary_second_nic: eth1
+        kubernetes_cicd_control_node03:
+          name: ${_param:kubernetes_cicd_control_node03_hostname}
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.kubernetes.control_cicd
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: xenial
+            single_address: ${_param:kubernetes_cicd_control_node03_address}
+            keepalived_vip_priority: 101
+            data_address: ${_param:kubernetes_cicd_control_node03_data_address}
+            deploy_nic: eth0
+            primary_second_nic: eth1
+        kubernetes_ccp_control_node01:
+          name: ${_param:kubernetes_control_node01_hostname}
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.kubernetes.control_ccp
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: xenial
+            single_address: ${_param:kubernetes_control_node01_address}
+            keepalived_vip_priority: 103
+            data_address: ${_param:kubernetes_control_node01_data_address}
+            deploy_nic: eth0
+            primary_second_nic: eth1
+        kubernetes_ccp_control_node02:
+          name: ${_param:kubernetes_control_node02_hostname}
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.kubernetes.control_ccp
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: xenial
+            single_address: ${_param:kubernetes_control_node02_address}
+            keepalived_vip_priority: 102
             data_address: ${_param:kubernetes_control_node02_data_address}
             deploy_nic: eth0
             primary_second_nic: eth1
-        kubernetes_control_node03:
+        kubernetes_ccp_control_node03:
+          name: ${_param:kubernetes_control_node03_hostname}
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.kubernetes.control_ccp
           params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: xenial
+            single_address: ${_param:kubernetes_control_node03_address}
+            keepalived_vip_priority: 101
             data_address: ${_param:kubernetes_control_node03_data_address}
             deploy_nic: eth0
             primary_second_nic: eth1
@@ -39,7 +103,7 @@ parameters:
           name: ${_param:kubernetes_compute_node01_hostname}
           domain: ${_param:cluster_domain}
           classes:
-          - cluster.${_param:cluster_name}.kubernetes.compute
+          - cluster.${_param:cluster_name}.kubernetes.compute_ccp
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: xenial
@@ -51,47 +115,11 @@ parameters:
           name: ${_param:kubernetes_compute_node02_hostname}
           domain: ${_param:cluster_domain}
           classes:
-          - cluster.${_param:cluster_name}.kubernetes.compute
+          - cluster.${_param:cluster_name}.kubernetes.compute_ccp
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: xenial
             single_address: ${_param:kubernetes_compute_node02_single_address}
             data_address: ${_param:kubernetes_compute_node02_data_address}
-            deploy_nic: eth0
-            primary_second_nic: eth1
-        kubernetes_compute_node03:
-          name: ${_param:kubernetes_compute_node03_hostname}
-          domain: ${_param:cluster_domain}
-          classes:
-          - cluster.${_param:cluster_name}.kubernetes.compute
-          params:
-            salt_master_host: ${_param:reclass_config_master}
-            linux_system_codename: xenial
-            single_address: ${_param:kubernetes_compute_node03_single_address}
-            data_address: ${_param:kubernetes_compute_node03_data_address}
-            deploy_nic: eth0
-            primary_second_nic: eth1
-        kubernetes_compute_node04:
-          name: ${_param:kubernetes_compute_node04_hostname}
-          domain: ${_param:cluster_domain}
-          classes:
-          - cluster.${_param:cluster_name}.kubernetes.compute
-          params:
-            salt_master_host: ${_param:reclass_config_master}
-            linux_system_codename: xenial
-            single_address: ${_param:kubernetes_compute_node04_single_address}
-            data_address: ${_param:kubernetes_compute_node04_data_address}
-            deploy_nic: eth0
-            primary_second_nic: eth1
-        kubernetes_compute_node05:
-          name: ${_param:kubernetes_compute_node05_hostname}
-          domain: ${_param:cluster_domain}
-          classes:
-          - cluster.${_param:cluster_name}.kubernetes.compute
-          params:
-            salt_master_host: ${_param:reclass_config_master}
-            linux_system_codename: xenial
-            single_address: ${_param:kubernetes_compute_node05_single_address}
-            data_address: ${_param:kubernetes_compute_node05_data_address}
             deploy_nic: eth0
             primary_second_nic: eth1

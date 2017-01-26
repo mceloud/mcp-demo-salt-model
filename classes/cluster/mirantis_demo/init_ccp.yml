@@ -25,36 +25,27 @@ parameters:
     # node hostnames
     kubernetes_compute_node01_hostname: cmp01
     kubernetes_compute_node02_hostname: cmp02
-    kubernetes_compute_node03_hostname: cmp03
-    kubernetes_compute_node04_hostname: cmp04
-    kubernetes_compute_node05_hostname: cmp05
-    kubernetes_control_node01_hostname: kvm01
-    kubernetes_control_node02_hostname: kvm02
-    kubernetes_control_node03_hostname: kvm03
+    kubernetes_control_node01_hostname: ctl01
+    kubernetes_control_node02_hostname: ctl02
+    kubernetes_control_node03_hostname: ctl03
     kubernetes_control_hostname: ctl
 
     # kubernetes data plane addresses
-    kubernetes_control_node01_data_address: 10.24.9.11
-    kubernetes_control_node02_data_address: 10.24.9.12
-    kubernetes_control_node03_data_address: 10.24.9.13
+    kubernetes_control_node01_data_address: 10.24.9.21
+    kubernetes_control_node02_data_address: 10.24.9.22
+    kubernetes_control_node03_data_address: 10.24.9.23
     kubernetes_compute_node01_data_address: 10.24.9.101
     kubernetes_compute_node02_data_address: 10.24.9.102
-    kubernetes_compute_node03_data_address: 10.24.9.103
-    kubernetes_compute_node04_data_address: 10.24.9.104
-    kubernetes_compute_node05_data_address: 10.24.9.105
 
     # kubernetes service addresses
-    kubernetes_control_address: 10.24.8.10
-    kubernetes_control_node01_address: 10.24.8.11
-    kubernetes_control_node02_address: 10.24.8.12
-    kubernetes_control_node03_address: 10.24.8.13
+    kubernetes_control_address: 10.24.8.20
+    kubernetes_control_node01_address: 10.24.8.21
+    kubernetes_control_node02_address: 10.24.8.22
+    kubernetes_control_node03_address: 10.24.8.23
 
     # kubernetes compute
     kubernetes_compute_node01_single_address: 10.24.8.101
     kubernetes_compute_node02_single_address: 10.24.8.102
-    kubernetes_compute_node03_single_address: 10.24.8.103
-    kubernetes_compute_node04_single_address: 10.24.8.104
-    kubernetes_compute_node05_single_address: 10.24.8.105
 
     ##FIXME if ntp defined
     #ntp_strata_host1: 

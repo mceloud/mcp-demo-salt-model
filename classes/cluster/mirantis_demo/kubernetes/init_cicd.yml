@@ -11,16 +11,16 @@ parameters:
     kubernetes_dns_token: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     etcd_initial_token: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     kubernetes_internal_api_address: 10.254.0.1
-    cluster_vip_address: ${_param:kubernetes_control_address}
+    cluster_vip_address: ${_param:kubernetes_cicd_control_address}
     cluster_local_address: ${_param:single_address}
-    cluster_node01_hostname: ${_param:kubernetes_control_node01_hostname}
-    cluster_node01_address: ${_param:kubernetes_control_node01_address}
+    cluster_node01_hostname: ${_param:kubernetes_cicd_control_node01_hostname}
+    cluster_node01_address: ${_param:kubernetes_cicd_control_node01_address}
     cluster_node01_port: 4001
-    cluster_node02_hostname: ${_param:kubernetes_control_node02_hostname}
-    cluster_node02_address: ${_param:kubernetes_control_node02_address}
+    cluster_node02_hostname: ${_param:kubernetes_cicd_control_node02_hostname}
+    cluster_node02_address: ${_param:kubernetes_cicd_control_node02_address}
     cluster_node02_port: 4001
-    cluster_node03_hostname: ${_param:kubernetes_control_node03_hostname}
-    cluster_node03_address: ${_param:kubernetes_control_node03_address}
+    cluster_node03_hostname: ${_param:kubernetes_cicd_control_node03_hostname}
+    cluster_node03_address: ${_param:kubernetes_cicd_control_node03_address}
     cluster_node03_port: 4001
     calico_private_network: 192.168.0.0
     calico_private_netmask: 16
@@ -28,50 +28,25 @@ parameters:
     network:
       host:
         ctl:
-          address: ${_param:kubernetes_control_address}
+          address: ${_param:kubernetes_cicd_control_address}
           names:
-          - ${_param:kubernetes_control_hostname}
-          - ${_param:kubernetes_control_hostname}.${_param:cluster_domain}
+          - ${_param:kubernetes_cicd_control_hostname}
+          - ${_param:kubernetes_cicd_control_hostname}.${_param:cluster_domain}
         ctl01:
-          address: ${_param:kubernetes_control_node01_address}
+          address: ${_param:kubernetes_cicd_control_node01_address}
           names:
-          - ${_param:kubernetes_control_node01_hostname}
-          - ${_param:kubernetes_control_node01_hostname}.${_param:cluster_domain}
+          - ${_param:kubernetes_cicd_control_node01_hostname}
+          - ${_param:kubernetes_cicd_control_node01_hostname}.${_param:cluster_domain}
         ctl02:
-          address: ${_param:kubernetes_control_node02_address}
+          address: ${_param:kubernetes_cicd_control_node02_address}
           names:
-          - ${_param:kubernetes_control_node02_hostname}
-          - ${_param:kubernetes_control_node02_hostname}.${_param:cluster_domain}
+          - ${_param:kubernetes_cicd_control_node02_hostname}
+          - ${_param:kubernetes_cicd_control_node02_hostname}.${_param:cluster_domain}
         ctl03:
-          address: ${_param:kubernetes_control_node03_address}
+          address: ${_param:kubernetes_cicd_control_node03_address}
           names:
-          - ${_param:kubernetes_control_node03_hostname}
-          - ${_param:kubernetes_control_node03_hostname}.${_param:cluster_domain}
-        cmp01:
-          address: ${_param:kubernetes_compute_node01_single_address}
-          names:
-          - ${_param:kubernetes_compute_node01_hostname}
-          - ${_param:kubernetes_compute_node01_hostname}.${_param:cluster_domain}
-        cmp02:
-          address: ${_param:kubernetes_compute_node02_single_address}
-          names:
-          - ${_param:kubernetes_compute_node02_hostname}
-          - ${_param:kubernetes_compute_node02_hostname}.${_param:cluster_domain}
-        cmp03:
-          address: ${_param:kubernetes_compute_node03_single_address}
-          names:
-          - ${_param:kubernetes_compute_node03_hostname}
-          - ${_param:kubernetes_compute_node03_hostname}.${_param:cluster_domain}
-        cmp04:
-          address: ${_param:kubernetes_compute_node04_single_address}
-          names:
-          - ${_param:kubernetes_compute_node04_hostname}
-          - ${_param:kubernetes_compute_node04_hostname}.${_param:cluster_domain}
-        cmp05:
-          address: ${_param:kubernetes_compute_node05_single_address}
-          names:
-          - ${_param:kubernetes_compute_node05_hostname}
-          - ${_param:kubernetes_compute_node05_hostname}.${_param:cluster_domain}
+          - ${_param:kubernetes_cicd_control_node03_hostname}
+          - ${_param:kubernetes_cicd_control_node03_hostname}.${_param:cluster_domain}
       resolv:
         dns:
           - 10.254.0.10

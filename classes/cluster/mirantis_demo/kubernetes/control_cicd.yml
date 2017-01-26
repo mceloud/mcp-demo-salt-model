@@ -7,9 +7,9 @@ classes:
 - system.kubernetes.master.cluster
 - system.glusterfs.server.cluster
 - system.glusterfs.client.cluster
-- cluster.mirantis_demo.kubernetes.compute
-- cluster.mirantis_demo.kubernetes
-- cluster.mirantis_demo
+- cluster.mirantis_demo.kubernetes.compute.init_cicd
+- cluster.mirantis_demo.kubernetes.init_cicd
+- cluster.mirantis_demo.init_cicd
 parameters:
   _param:
     keepalived_vip_interface: bond0.2408
@@ -46,4 +46,4 @@ parameters:
         mcp_data:
           path: /srv/volumes/mcp_data
           server: ${_param:cluster_node01_address}
-          opts: 'defaults'
+          opts: 'defaults,use-readdirp=no'
