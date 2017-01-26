@@ -7,7 +7,7 @@ classes:
 - system.kubernetes.master.cluster
 - system.glusterfs.server.cluster
 - system.glusterfs.client.cluster
-- cluster.mirantis_demo.kubernetes.compute.init_cicd
+- cluster.mirantis_demo.kubernetes.compute_cicd
 - cluster.mirantis_demo.kubernetes.init_cicd
 - cluster.mirantis_demo.init_cicd
 parameters:

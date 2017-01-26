@@ -7,7 +7,7 @@ classes:
 - system.kubernetes.master.cluster
 - system.glusterfs.server.cluster
 - system.glusterfs.client.cluster
-- cluster.mirantis_demo.kubernetes.compute.init_ccp
+- cluster.mirantis_demo.kubernetes.compute_ccp
 - cluster.mirantis_demo.kubernetes.init_ccp
 - cluster.mirantis_demo.init_ccp
 parameters:
