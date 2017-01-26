@@ -45,8 +45,8 @@ parameters:
             linux_system_codename: xenial
             single_address: ${_param:kubernetes_compute_node01_single_address}
             data_address: ${_param:kubernetes_compute_node01_data_address}
-            deploy_nic: eth0
-            primary_second_nic: eth1
+            deploy_nic: eth2
+            primary_second_nic: eth3
         kubernetes_compute_node02:
           name: ${_param:kubernetes_compute_node02_hostname}
           domain: ${_param:cluster_domain}
