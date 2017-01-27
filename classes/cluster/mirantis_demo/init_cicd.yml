@@ -12,6 +12,8 @@ parameters:
     cluster_domain: mirantis_demo.local
     reclass_data_revision: master
     cluster_name: mirantis_demo
+    cicd_cert_location: _certs/kubernetes-cicd
+    salt_master_base_environment: prd
 
     # cert parameters
     salt_minion_ca_host: ${_param:infra_config_hostname}.${_param:cluster_domain}

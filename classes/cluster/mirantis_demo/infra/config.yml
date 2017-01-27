@@ -4,13 +4,13 @@ classes:
 - system.salt.master.pkg
 - system.salt.master.api
 - system.salt.minion.ca.salt_master
+- system.salt.minion.cert.k8s_server
 - system.reclass.storage.salt
 #- system.reclass.storage.system.kubernetes_control_cluster
 - cluster.mirantis_demo.init_ccp
 - cluster.mirantis_demo.init_cicd
 parameters:
   _param:
-    salt_master_base_environment: prd
     reclass_data_repository: "https://github.com/mceloud/mcp-demo-salt-model.git"
     reclass_data_revision: master
     reclass_config_master: ${_param:infra_config_deploy_address}
@@ -18,6 +18,18 @@ parameters:
     deploy_address: ${_param:infra_config_deploy_address}
     salt_master_host: ${_param:infra_config_address}
     linux_system_codename: xenial
+  salt:
+    minion:
+      cert:
+        k8s_server_cicd:
+          host: ${_param:salt_minion_ca_host}
+          authority: ${_param:salt_minion_ca_authority}
+          common_name: kubernetes-server
+          key_file: /srv/salt/env/${_param:salt_master_base_environment}/${_param:cicd_cert_location}/kubernetes-server.key
+          cert_file: /srv/salt/env/${_param:salt_master_base_environment}/${_param:cicd_cert_location}/kubernetes-server.crt
+          all_file: /srv/salt/env/${_param:salt_master_base_environment}/${_param:cicd_cert_location}/kubernetes-server.pem
+          signing_policy: cert_server
+          alternative_names: IP:${_param:kubernetes_cicd_control_address},IP:${_param:kubernetes_cicd_control_node01_address},IP:${_param:kubernetes_cicd_control_node02_address},IP:${_param:kubernetes_cicd_control_node03_address},IP:${_param:kubernetes_internal_api_address}
   reclass:
     storage:
       node:

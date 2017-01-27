@@ -1,9 +1,9 @@
 classes:
 - service.etcd.server.cluster
 - system.haproxy.proxy.listen.kubernetes.etcd
+- system.haproxy.proxy.listen.kubernetes.apiserver_insecure
 - system.linux.system.repo.docker
 - system.linux.system.repo.tcp_base
-- system.salt.minion.cert.k8s_server_certificate
 - system.kubernetes.master.cluster
 - system.glusterfs.server.cluster
 - system.glusterfs.client.cluster
@@ -25,6 +25,9 @@ parameters:
       addons:
         dns:
           replicas: 3
+      apiserver:
+        node_port_range: 29418-50001
+      cert_location: ${_param:cicd_cert_location}
   glusterfs:
     server:
       volumes:
