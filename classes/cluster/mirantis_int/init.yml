@@ -37,6 +37,8 @@ parameters:
     kubernetes_compute_node01_data_address: 10.24.3.101
     kubernetes_compute_node02_data_address: 10.24.3.102
 
+    k8s_access_vip: 172.16.164.60
+
     # kubernetes service addresses
     kubernetes_control_address: 10.24.2.10
     kubernetes_control_node01_address: 10.24.2.11

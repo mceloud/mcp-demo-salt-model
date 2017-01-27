@@ -1,6 +1,7 @@
 classes:
 - service.etcd.server.cluster
 - system.haproxy.proxy.listen.kubernetes.etcd
+- system.haproxy.proxy.listen.kubernetes.apiserver_insecure
 - system.linux.system.repo.docker
 - system.linux.system.repo.tcp_base
 - system.kubernetes.master.cluster
@@ -22,3 +23,19 @@ parameters:
       addons:
         dns:
           replicas: 3
+  haproxy:
+    proxy:
+      listen:
+        k8s_secure:
+          binds:
+          - address: ${_param:k8s_access_vip}
+            port: 443
+  keepalived:
+    cluster:
+      instance:
+        k8s_access:
+          interface: ${_param:deploy_nic}
+          virtual_router_id: 90
+          priority: ${_param:keepalived_vip_priority}
+          password: password
+          address: ${_param:k8s_access_vip}
