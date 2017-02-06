@@ -101,7 +101,6 @@ parameters:
             linux_system_codename: xenial
             single_address: ${_param:kubernetes_control_node01_address}
             keepalived_vip_priority: 103
-            keepalived_vip_password: password-keepalived-ccp
             data_address: ${_param:kubernetes_control_node01_data_address}
             deploy_nic: eth0
             primary_second_nic: eth1
@@ -116,7 +115,6 @@ parameters:
             linux_system_codename: xenial
             single_address: ${_param:kubernetes_control_node02_address}
             keepalived_vip_priority: 102
-            keepalived_vip_password: password-keepalived-ccp
             data_address: ${_param:kubernetes_control_node02_data_address}
             deploy_nic: eth0
             primary_second_nic: eth1
@@ -131,7 +129,6 @@ parameters:
             linux_system_codename: xenial
             single_address: ${_param:kubernetes_control_node03_address}
             keepalived_vip_priority: 101
-            keepalived_vip_password: password-keepalived-ccp
             data_address: ${_param:kubernetes_control_node03_data_address}
             deploy_nic: eth0
             primary_second_nic: eth1
