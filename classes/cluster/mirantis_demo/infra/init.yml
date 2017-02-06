@@ -20,6 +20,3 @@ parameters:
     system:
       name: ${_param:infra_config_hostname}
       domain: ${_param:cluster_domain}
-  salt:
-    master:
-      accept_policy: open_mode

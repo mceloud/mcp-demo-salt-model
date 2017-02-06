@@ -12,13 +12,16 @@ classes:
 parameters:
   _param:
     reclass_data_repository: "https://github.com/mceloud/mcp-demo-salt-model.git"
-    reclass_data_revision: master
+    reclass_data_revision: fix-ccp
     reclass_config_master: ${_param:infra_config_deploy_address}
     single_address: ${_param:infra_config_address}
     deploy_address: ${_param:infra_config_deploy_address}
     salt_master_host: ${_param:infra_config_address}
     linux_system_codename: xenial
+
   salt:
+    master:
+      accept_policy: open_mode
     minion:
       cert:
         k8s_server_cicd:
@@ -30,9 +33,20 @@ parameters:
           all_file: /srv/salt/env/${_param:salt_master_base_environment}/${_param:cicd_cert_location}/kubernetes-server.pem
           signing_policy: cert_server
           alternative_names: IP:${_param:kubernetes_cicd_control_address},IP:${_param:kubernetes_cicd_control_node01_address},IP:${_param:kubernetes_cicd_control_node02_address},IP:${_param:kubernetes_cicd_control_node03_address},IP:${_param:kubernetes_internal_api_address}
+        k8s_server:
+          host: ${_param:salt_minion_ca_host}
+          authority: ${_param:salt_minion_ca_authority}
+          common_name: kubernetes-server
+          key_file: /srv/salt/env/${_param:salt_master_base_environment}/${_param:ccp_cert_location}/kubernetes-server.key
+          cert_file: /srv/salt/env/${_param:salt_master_base_environment}/${_param:ccp_cert_location}/kubernetes-server.crt
+          all_file: /srv/salt/env/${_param:salt_master_base_environment}/${_param:ccp_cert_location}/kubernetes-server.pem
+          signing_policy: cert_server
+          alternative_names: IP:${_param:kubernetes_control_address},IP:${_param:kubernetes_control_node01_address},IP:${_param:kubernetes_control_node02_address},IP:${_param:kubernetes_control_node03_address},IP:${_param:kubernetes_internal_api_address}
+
   reclass:
     storage:
       node:
+
         kubernetes_cicd_control_node01:
           name: ${_param:kubernetes_cicd_control_node01_hostname}
           domain: ${_param:cluster_domain}
@@ -46,6 +60,7 @@ parameters:
             data_address: ${_param:kubernetes_cicd_control_node01_data_address}
             deploy_nic: enp3s0f0
             primary_second_nic: enp3s0f1
+
         kubernetes_cicd_control_node02:
           name: ${_param:kubernetes_cicd_control_node02_hostname}
           domain: ${_param:cluster_domain}
@@ -59,6 +74,7 @@ parameters:
             data_address: ${_param:kubernetes_cicd_control_node02_data_address}
             deploy_nic: eth0
             primary_second_nic: eth1
+
         kubernetes_cicd_control_node03:
           name: ${_param:kubernetes_cicd_control_node03_hostname}
           domain: ${_param:cluster_domain}
@@ -72,6 +88,8 @@ parameters:
             data_address: ${_param:kubernetes_cicd_control_node03_data_address}
             deploy_nic: eth0
             primary_second_nic: eth1
+
+        # CCP
         kubernetes_ccp_control_node01:
           name: ${_param:kubernetes_control_node01_hostname}
           domain: ${_param:cluster_domain}
@@ -85,6 +103,7 @@ parameters:
             data_address: ${_param:kubernetes_control_node01_data_address}
             deploy_nic: eth0
             primary_second_nic: eth1
+
         kubernetes_ccp_control_node02:
           name: ${_param:kubernetes_control_node02_hostname}
           domain: ${_param:cluster_domain}
@@ -98,6 +117,7 @@ parameters:
             data_address: ${_param:kubernetes_control_node02_data_address}
             deploy_nic: eth0
             primary_second_nic: eth1
+
         kubernetes_ccp_control_node03:
           name: ${_param:kubernetes_control_node03_hostname}
           domain: ${_param:cluster_domain}
@@ -111,6 +131,7 @@ parameters:
             data_address: ${_param:kubernetes_control_node03_data_address}
             deploy_nic: eth0
             primary_second_nic: eth1
+
         kubernetes_compute_node01:
           name: ${_param:kubernetes_compute_node01_hostname}
           domain: ${_param:cluster_domain}
@@ -123,6 +144,7 @@ parameters:
             data_address: ${_param:kubernetes_compute_node01_data_address}
             deploy_nic: eth0
             primary_second_nic: eth1
+
         kubernetes_compute_node02:
           name: ${_param:kubernetes_compute_node02_hostname}
           domain: ${_param:cluster_domain}
