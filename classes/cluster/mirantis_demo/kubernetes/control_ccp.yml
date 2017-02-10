@@ -20,11 +20,6 @@ parameters:
         calico:
           key: /calico/v1/ipam/v4/pool/${_param:calico_private_network}-${_param:calico_private_netmask}
           value: '{"masquerade": true, "cidr": "${_param:calico_private_network}/${_param:calico_private_netmask}"}'
-  kubernetes:
-    master:
-      addons:
-        dns:
-          replicas: 3
   glusterfs:
     server:
       volumes:
@@ -47,3 +42,8 @@ parameters:
           path: /srv/volumes/mcp_data
           server: ${_param:cluster_node01_address}
           opts: 'defaults'
+    keepalived:
+      cluster:
+        instance:
+          VIP:
+            enabled: False
