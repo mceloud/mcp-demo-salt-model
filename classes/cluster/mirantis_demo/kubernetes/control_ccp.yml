@@ -42,8 +42,8 @@ parameters:
           path: /srv/volumes/mcp_data
           server: ${_param:cluster_node01_address}
           opts: 'defaults'
-    keepalived:
-      cluster:
-        instance:
-          VIP:
-            enabled: False
+  keepalived:
+    cluster:
+      instance:
+        VIP:
+          enabled: False
