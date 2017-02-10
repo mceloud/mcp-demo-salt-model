@@ -47,3 +47,9 @@ parameters:
       instance:
         VIP:
           enabled: False
+        VIP_ccp:
+          address: 10.24.8.20
+          interface: bond0.2408
+          password: password-ccp
+          priority: 101
+          virtual_router_id: 70
