@@ -1,7 +1,7 @@
 classes:
 - service.etcd.server.cluster
 - system.haproxy.proxy.listen.kubernetes.etcd
-- system.haproxy.proxy.listen.kubernetes.apiserver_insecure
+- system.haproxy.proxy.listen.kubernetes.apiserver
 - system.linux.system.repo.docker
 - system.linux.system.repo.tcp_base
 - system.kubernetes.master.cluster
