@@ -14,6 +14,9 @@ parameters:
   _param:
     keepalived_vip_interface: bond0.2408
     keepalived_vip_virtual_router_id: 70
+  kubernetes:
+    master:
+      cert_source: ${_param:ccp_cert_location}
   etcd:
     server:
       setup:
