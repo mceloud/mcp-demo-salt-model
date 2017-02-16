@@ -12,6 +12,7 @@ parameters:
     etcd_initial_token: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     kubernetes_internal_api_address: 10.254.0.1
     cluster_vip_address: ${_param:kubernetes_control_address}
+    keepalived_vip_password: password-ccp
     cluster_local_address: ${_param:single_address}
     cluster_node01_hostname: ${_param:kubernetes_control_node01_hostname}
     cluster_node01_address: ${_param:kubernetes_control_node01_address}

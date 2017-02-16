@@ -7,16 +7,20 @@ classes:
 - system.openssh.server.team.ccp_team
 - cluster.mirantis_demo.infra
 #- cluster.mirantis_demo.kubernetes
-parameters: 
+parameters:
   _param:
     cluster_domain: mirantis_demo.local
     reclass_data_revision: master
     cluster_name: mirantis_demo
+    ccp_cert_location: _certs/kubernetes-ccp
     salt_master_base_environment: prd
 
     # cert parameters
     salt_minion_ca_host: ${_param:infra_config_hostname}.${_param:cluster_domain}
     salt_minion_ca_authority: salt_master_ca
+
+    # kuberenetes setttings
+    kubernetes_internal_api_address: 10.254.0.1
 
     # infra service addresses
     infra_config_address: 172.16.164.130

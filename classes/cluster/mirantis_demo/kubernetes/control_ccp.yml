@@ -1,7 +1,7 @@
 classes:
 - service.etcd.server.cluster
 - system.haproxy.proxy.listen.kubernetes.etcd
-- system.haproxy.proxy.listen.kubernetes.apiserver_insecure
+- system.haproxy.proxy.listen.kubernetes.apiserver
 - system.linux.system.repo.docker
 - system.linux.system.repo.tcp_base
 - system.kubernetes.master.cluster
@@ -14,17 +14,15 @@ parameters:
   _param:
     keepalived_vip_interface: bond0.2408
     keepalived_vip_virtual_router_id: 70
+  kubernetes:
+    master:
+      cert_source: ${_param:ccp_cert_location}
   etcd:
     server:
       setup:
         calico:
           key: /calico/v1/ipam/v4/pool/${_param:calico_private_network}-${_param:calico_private_netmask}
           value: '{"masquerade": true, "cidr": "${_param:calico_private_network}/${_param:calico_private_netmask}"}'
-  kubernetes:
-    master:
-      addons:
-        dns:
-          replicas: 3
   glusterfs:
     server:
       volumes:
@@ -47,3 +45,14 @@ parameters:
           path: /srv/volumes/mcp_data
           server: ${_param:cluster_node01_address}
           opts: 'defaults'
+  keepalived:
+    cluster:
+      instance:
+        VIP:
+          enabled: False
+        VIP_ccp:
+          address: 10.24.8.20
+          interface: bond0.2408
+          password: password-ccp
+          priority: 101
+          virtual_router_id: 70

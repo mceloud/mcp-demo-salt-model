@@ -1,2 +1,7 @@
 classes:
   - cluster.mirantis_demo.infra.config
+
+parameters:
+  salt:
+    master:
+      accept_policy: open_mode
